@@ -1,20 +1,16 @@
-import { useRef, useState } from "react";
-import Tesseract from "tesseract.js";
+import { useState } from "react";
+import { createWorker } from "tesseract.js";
 import "./App.css";
 
 function App() {
   const [imagePath, setImagePath] = useState("");
   const [text, setText] = useState("");
-  const canvasRef = useRef(null);
-  const imageRef = useRef(null);
 
   const handleChange = (event) => {
     setImagePath(URL.createObjectURL(event.target.files[0]));
   };
 
   const handleClick = async () => {
-    const { createWorker } = require("tesseract.js");
-
     const worker = await createWorker({
       logger: (m) => console.log(m), // Add logger here
     });
